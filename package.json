@@ -1,6 +1,6 @@
 {
     "name": "zoedylan-tool",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "zoeDylan私人工具包",
     "main": "index.js",
     "scripts": {
