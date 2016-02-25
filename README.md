@@ -18,6 +18,7 @@ zoeDylan私人工具包
 ###前端js扩展：
 #####地址：https://raw.githubusercontent.com/zoeDylan/zoeDylan-tool/master/statics/js/extend.js
 >####随机数
->>```randomNum(min[,max]);```
+>>randomNum(min[,max]);
+
 >####String原型添加去首尾空格函数
->>```String.trim()```
+>>String.trim()
