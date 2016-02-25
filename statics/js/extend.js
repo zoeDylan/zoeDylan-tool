@@ -15,6 +15,30 @@ function randomNum(min, max) {
 }
 
 /*
+ * 随机字符串
+ * 默认32位字符
+ * len:返回字符串长度
+ * char:指定字符串
+ */
+function randomString(length, chars) {
+    length = length || 32;
+
+    chars = chars || 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+    var pwd = '';
+    for (i = 0; i < length; i++) {
+        pwd += chars.charAt(randomNum(chars.length));
+    }
+    return pwd;
+}
+
+/*
+ * 随机颜色值
+ */
+function randomColor() {
+    return "#" + ("00000" + ((Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6);
+}
+
+/*
  * 去字符串首尾空格
  * 使用理由：性能优化惊人
  * 代码来源：http://www.cnblogs.com/rubylouvre/archive/2009/09/18/1568794.html
