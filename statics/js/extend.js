@@ -1,4 +1,20 @@
 ﻿/*
+ * JS函数扩展
+ * 作者：zoeDylan
+ * 描述：收集网络上各种高性能、实用性高、兼容解决等JS功能，方便平时开发
+ */
+; (function () {
+    var versions = '0.0.1';
+    var zoe = window['zoeDylan'] || {};
+    zoe.extend = {
+        versions: versions,
+        v: versions
+    }
+    window['zoeDylan'] = zoe;
+    window['zoe'] = zoe;
+})();
+
+/*
  * 随机值
  * min:最小值
  * max:最大值
