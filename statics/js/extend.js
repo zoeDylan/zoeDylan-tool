@@ -2,17 +2,13 @@
  * JS函数扩展
  * 作者：zoeDylan
  * 描述：收集网络上各种高性能、实用性高、兼容解决等JS功能，方便平时开发
+ * 修改：2016-05-03 
+ * ##更新说明：
+ * 1. 添加_cookie函数
+ * 2. 之前未添加下划线(`_`)的函数全部添加下划线(`_`)
+ * 3. 去除`zoe`和`zoeDylan`的全局函数添加
+ * 
  */
-; (function () {
-    var versions = '0.0.1';
-    var zoe = window['zoeDylan'] || {};
-    zoe.extend = {
-        versions: versions,
-        v: versions
-    }
-    window['zoeDylan'] = zoe;
-    window['zoe'] = zoe;
-})();
 
 /*
  * 随机值
@@ -22,7 +18,7 @@
  * randomNum(10);获取0-10的值
  * randomNum(1.0,10);获取0-10的值(小数)
  */
-function randomNum(min, max) {
+function _randomNum(min, max) {
     if (typeof (max) == 'undefined') {
         max = min;
         min = 0;
@@ -36,7 +32,7 @@ function randomNum(min, max) {
  * len:返回字符串长度
  * char:指定字符串
  */
-function randomString(length, chars) {
+function _randomString(length, chars) {
     length = length || 32;
 
     chars = chars || 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
@@ -49,16 +45,14 @@ function randomString(length, chars) {
 
 /*
  * 随机颜色值
+ * 返回：#XXXXXX(16进制)
  */
-function randomColor() {
+function _randomColor() {
     return "#" + ("00000" + ((Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6);
 }
-
+_
 /*
  * 去字符串首尾空格
- * 使用理由：性能优化惊人
- * 代码来源：http://www.cnblogs.com/rubylouvre/archive/2009/09/18/1568794.html
- * 描述：它先是把可能的空白符全部列出来，在第一次遍历中砍掉前面的空白，第二次砍掉后面的空白。全过程只用了indexOf与substring这个专门为处理字符串而生的原生方法，没有使用到正则。速度快得惊人，估计直逼上内部的二进制实现，并且在IE与火狐（其他浏览器当然也毫无疑问）都有良好的表现。速度都是零毫秒级别的。
  */
 String.prototype.trim = function () {
     var str = this,
@@ -77,3 +71,99 @@ String.prototype.trim = function () {
     }
     return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
 }
+
+/*
+ * cookie处理，默认get、set、clear使用html5的localStorage,没有的情况下使用cookie
+ * 
+ */
+var _cookie = (function () {
+    var cookie = {};
+    cookie.html5 = window.localStorage ? true : false;
+
+
+
+    cookie.setCookie = function (name, cvalue, exdays) {
+        var d = new Date();
+        exdays = exdays || 100000;
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+    cookie.getCookie = function (name) {
+         name = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) != -1) {
+                return c.substring(name.length, c.length)
+            }
+        }
+        return null;
+    }
+    cookie.clearCookie = function (name) {
+        setCookie(name, "", -1);
+    }
+    cookie.deleteCookie = cookie.clearCookie;
+    cookie.getAllCookie = function () {
+        var all = {};
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            c = c.split('=');
+            all[c[0]] = c[1];
+        }
+        return all;
+    }
+    cookie.clearAllCookie = function () {
+        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (var i = keys.length; i--;)
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+        }
+    }
+    cookie.deleteAllCookie = cookie.clearAllCookie;
+
+    if (cookie.html5) {
+        cookie.set = function (name, val) {
+            window.localStorage.setItem(name, val);
+        }
+        cookie.get = function (name) {
+            return window.localStorage.getItem(name);
+        }
+        cookie.clear = function (name) {
+            window.localStorage.removeItem(name);
+        }
+        cookie.delete = cookie.clear;
+        cookie.getAll = function () {
+            var all = {};
+            for (var i = 0; i < window.localStorage.length; i++) {
+                var nowK = window.localStorage.key(i);
+                all[nowK] = window.localStorage.getItem(nowK);
+            }
+            return all;
+        }
+        cookie.clearAll = function () {
+            for (var i = 0; i < window.localStorage.length; i++) {
+                var nowK = window.localStorage.key(i);
+                window.localStorage.removeItem(nowK);
+            }
+        }
+        cookie.deleteAll = cookie.clearAll;
+    } else {
+        cookie.set = cookie.setCookie;
+        cookie.get = cookie.getCookie;
+        cookie.clear = cookie.clearCookie;
+        cookie.delete = cookie.clear;
+        cookie.getAll = cookie.getAllCookie;
+        cookie.clearAll = cookie.clearAllCookie;
+        cookie.deleteAll = cookie.clearAll;
+    }
+
+    return cookie;
+})();
