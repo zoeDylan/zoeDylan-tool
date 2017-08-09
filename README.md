@@ -125,9 +125,68 @@ zoeDylan私人工具包
     _isPhone('13511221122'); //true
     _isPhone(`123`); //false
 ``` 
+**`_wx`** 微信开发
 
+> **`_wx.init(config,shareConfig)`** 模块初始化，必须调用次方法才能其它操作
+>> `config:Object` 微信权限配置
+>> `shareConfig:Object` 微信分享配置
+>> `@return undefined`
+
+```
+    _wx.init({
+        //debug模式 默认：false
+        debug: Boolean ,
+        appId: String,
+        timestamp: String,
+        nonceStr: String,
+        signature: String,
+        //微信api列表 默认：['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
+        jsApiList: Array
+    },{
+        title: String,//标题
+        desc: String,//描述
+        link: String,//地址
+        imgUrl: String,//图片
+        success: Function,//分享成功回调
+        cancel: Function//分享取消回调
+    });
+```
+> **`_wx.setShareConfig(shareConfig)`** 微信分享配置
+>> `shareConfig:Object` 微信分享配置
+>> `@return undefined`
+```
+    _wx.setShareConfig({
+        title: String,//标题
+        desc: String,//描述
+        link: String,//地址
+        imgUrl: String,//图片
+        success: Function,//分享成功回调
+        cancel: Function//分享取消回调
+    });
+```
+> **`_wx.setShareCancel(fn)`** 设置分享取消的事件
+>> `fn:Function`
+>> `@return undefined`
+```
+    _wx.setShareCancel(function(){
+        //you code
+    });
+```
+> **`_wx.setShareSuccess(fn)`** 设置分享完成的事件
+>> `fn:Function`
+>> `@return undefined`
+```
+    _wx.setShareSuccess(function(){
+        //you code
+    });
+```
 
 # 日志
+
+> 2017-08-09
+
+>> 1. 添加微信相关
+>> 2. 提取代码进行分类
 
 > 2017-07-28
 
