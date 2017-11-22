@@ -5,9 +5,9 @@ zoeDylan私人工具包
 
 # Begin
 
-> `npm zoedylan-tool`
+1. `npm zoedylan-tool`
 
-> `cosnt tool = require('zoedylan-tool');` or `const { } = require('zoedylan-tool');`
+2. `cosnt tool = require('zoedylan-tool');` or `const { } = require('zoedylan-tool');`
 
 # API
 
@@ -15,7 +15,7 @@ zoeDylan私人工具包
 
 > `@return String`
 
-``` 
+```javascript
     _randomColor(); // #000000 
 ```
 
@@ -29,7 +29,7 @@ zoeDylan私人工具包
 
 > `@return Number`
 
-```
+```javascript
     _randomNum(5); // 0 - 5
     _randomNum(1,5); // 1 - 5
     _randomNum(10,5); // 5 - 10
@@ -45,7 +45,7 @@ zoeDylan私人工具包
 
 > `@return String`
 
-```
+```javascript
     _randomString(); //32位字符串
     _randomString(5); //5位字符串
     _randomString(3,'abcdef'); //3位字随机`abcdef`字符串
@@ -63,7 +63,7 @@ zoeDylan私人工具包
 
 >> `@return undefined`
 
-```
+```javascript
     _cookie.set('zoeDylan','_cookie.set');//保存0天cookie
     _cookie.set('zoeDylan','_cookie.set',2);//保存2天cookie
 ```
@@ -74,7 +74,7 @@ zoeDylan私人工具包
 
 >> `@return String` 
 
-```
+```javascript
     _cookie.set('zoeDylan'); // '_cookie.set'
 ```
 
@@ -82,7 +82,7 @@ zoeDylan私人工具包
 
 >> `@return Object` 
 
-```
+```javascript
     _cookie.getAll(); //  {'name1':'val1','name2':'value2'}
 ```
 
@@ -92,7 +92,7 @@ zoeDylan私人工具包
 
 >> `@return undefined` 
 
-```
+```javascript
     _cookie.clear('zoeDylan'); //清除 zoeDylan
 ```
 
@@ -100,7 +100,7 @@ zoeDylan私人工具包
 
 >> `@return undefined` 
 
-```
+```javascript
     _cookie.clearAll('); //清除全部cookie
 ```
 
@@ -110,7 +110,7 @@ zoeDylan私人工具包
 
 > `@return Boolean`
 
-```
+```javascript
     _isEmail('627213037@qq.com'); //true
     _isEmail(`123`); //false
 ```
@@ -121,7 +121,7 @@ zoeDylan私人工具包
 
 > `@return Boolean`
 
-```
+```javascript
     _isPhone('13511221122'); //true
     _isPhone(`123`); //false
 ``` 
@@ -132,7 +132,7 @@ zoeDylan私人工具包
 >> `shareConfig:Object` 微信分享配置
 >> `@return undefined`
 
-```
+```javascript
     _wx.init({
         //debug模式 默认：false
         debug: Boolean ,
@@ -154,7 +154,7 @@ zoeDylan私人工具包
 > **`_wx.setShareConfig(shareConfig)`** 微信分享配置
 >> `shareConfig:Object` 微信分享配置
 >> `@return undefined`
-```
+```javascript
     _wx.setShareConfig({
         title: String,//标题
         desc: String,//描述
@@ -167,7 +167,7 @@ zoeDylan私人工具包
 > **`_wx.setShareCancel(fn)`** 设置分享取消的事件
 >> `fn:Function`
 >> `@return undefined`
-```
+```javascript
     _wx.setShareCancel(function(){
         //you code
     });
@@ -175,13 +175,29 @@ zoeDylan私人工具包
 > **`_wx.setShareSuccess(fn)`** 设置分享完成的事件
 >> `fn:Function`
 >> `@return undefined`
-```
+```javascript
     _wx.setShareSuccess(function(){
         //you code
     });
 ```
 
+> **`_queryURL(url)`** 解析URL参数
+
+>> `url:String`
+
+>> `@return Object`
+
+```javascript
+    cosnt url = _queryURL('http://www.a.com?a1=123&num=100');
+    console.log(url.a1);//123
+    console.log(url['num']);//100
+```
+
 # 日志
+
+2017-11-22 
+
+1. 添加`url`参数解析方法：`queryURL(string)`
 
 2017-08-17
 
