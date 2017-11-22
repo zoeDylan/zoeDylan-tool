@@ -101,7 +101,7 @@ zoeDylan私人工具包
 >> `@return undefined` 
 
 ```javascript
-    _cookie.clearAll('); //清除全部cookie
+    _cookie.clearAll(); //清除全部cookie
 ```
 
 **`_isEmail(val)`** 是否是邮箱格式
