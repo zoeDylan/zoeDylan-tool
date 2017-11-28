@@ -193,7 +193,42 @@ zoeDylan私人工具包
     console.log(url['num']);//100
 ```
 
+> **`_element.hasClass(elements,cName)`** 查询元素是否存在某个`class`
+
+>> `elements:element Object`
+>> `cName:String`
+>> `@return Boolean`
+
+```javascript
+    _element.hasClass(document.querySelector('body'),'phoen');//false
+```
+
+> **`_element.addClass(elements,cName)`** 给元素添加`class`
+
+>> `elements:element Object`
+>> `cName:String`
+>> `@return undefined`
+
+```javascript
+    _element.addClass(document.querySelector('body'),'phoen');
+```
+
+> **`_element.removeClas(elements,cName)`** 移除某个元素的`class`
+
+>> `elements:element Object`
+>> `cName:String`
+>> `@return undefined`
+
+```javascript
+    _element.removeClas(document.querySelector('body'),'phoen');
+```
+
+
 # 日志
+
+2017-11-28
+
+1. 添加`element`的`class`处理
 
 2017-11-22 
 
