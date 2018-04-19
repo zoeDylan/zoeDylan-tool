@@ -1,5 +1,6 @@
 # zoeDylan-tool
-zoeDylan私人工具包
+
+zoeDylan 私人工具包
 
 收集前端开发中的各种小技巧和小工具，例如随机字符串、数字什么的，各种验证什么的。
 
@@ -7,21 +8,22 @@ zoeDylan私人工具包
 
 1. `npm zoedylan-tool`
 
-2. `cosnt tool = require('zoedylan-tool');` or `const { } = require('zoedylan-tool');`
+2. `cosnt tool = require('zoedylan-tool');` or `const { } =
+   require('zoedylan-tool');`
 
 # API
 
-**`_randomColor();`** 随机16进制颜色值
+**`_randomColor();`** 随机 16 进制颜色值
 
 > `@return String`
 
 ```javascript
-    _randomColor(); // #000000 
+_randomColor(); // #000000
 ```
 
 **`_randomNum(min[,max[,decimal]]);`** 随机数字
 
-> *`min:Number` 最小值
+> \*`min:Number` 最小值
 
 > `max:Number` 最大值
 
@@ -30,78 +32,89 @@ zoeDylan私人工具包
 > `@return Number`
 
 ```javascript
-    _randomNum(5); // 0 - 5
-    _randomNum(1,5); // 1 - 5
-    _randomNum(10,5); // 5 - 10
-    _randomNum(0,5,1); // 0.0 - 5.0
-    _randomNum(0,5,2); // 0.00 - 5.00
+_randomNum(5); // 0 - 5
+_randomNum(1, 5); // 1 - 5
+_randomNum(10, 5); // 5 - 10
+_randomNum(0, 5, 1); // 0.0 - 5.0
+_randomNum(0, 5, 2); // 0.00 - 5.00
 ```
 
 **`_randomString([length[, chars]])`** 随机字符串
 
 > `length:Number` 字符串长度 (`default:32`)
 
-> `chars:String` 自定义字符串 (`default:ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678`)
+> `chars:String` 自定义字符串
+> (`default:ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678`)
 
 > `@return String`
 
 ```javascript
-    _randomString(); //32位字符串
-    _randomString(5); //5位字符串
-    _randomString(3,'abcdef'); //3位字随机`abcdef`字符串
+_randomString(); //32位字符串
+_randomString(5); //5位字符串
+_randomString(3, "abcdef"); //3位字随机`abcdef`字符串
 ```
 
-**`_cookie`** cookie操作 *仅用于浏览器
+**_randomStringBySymbol([length])** 包含符号的随机字符串
 
-> **`_cookie.set(name,val,day)`** 设置cookie
+> `length:Number` 字符串长度 (`default:32`)
 
->> *`name:String` cookie名称
-
->> *`val:String` cookie值
-
->> *`day:Number` cookie保存天数 (`default:0`)
-
->> `@return undefined`
+> `@return String`
 
 ```javascript
-    _cookie.set('zoeDylan','_cookie.set');//保存0天cookie
-    _cookie.set('zoeDylan','_cookie.set',2);//保存2天cookie
+_randomStringBySymbol(); //32位字符串
 ```
 
-> **`_cookie.get(name)`** 获取cookie
+**`_cookie`** cookie 操作 \* 仅用于浏览器
 
->> `name:String` cookie名称
+> **`_cookie.set(name,val,day)`** 设置 cookie
 
->> `@return String` 
+> > \*`name:String` cookie 名称
+
+> > \*`val:String` cookie 值
+
+> > \*`day:Number` cookie 保存天数 (`default:0`)
+
+> > `@return undefined`
 
 ```javascript
-    _cookie.set('zoeDylan'); // '_cookie.set'
+_cookie.set("zoeDylan", "_cookie.set"); //保存0天cookie
+_cookie.set("zoeDylan", "_cookie.set", 2); //保存2天cookie
 ```
 
-> **`_cookie.getAll()`** 获取全部cookie
+> **`_cookie.get(name)`** 获取 cookie
 
->> `@return Object` 
+> > `name:String` cookie 名称
+
+> > `@return String`
 
 ```javascript
-    _cookie.getAll(); //  {'name1':'val1','name2':'value2'}
+_cookie.set("zoeDylan"); // '_cookie.set'
 ```
 
-> **`_cookie.clear(name)`** 清除cookie
+> **`_cookie.getAll()`** 获取全部 cookie
 
->> `name:String` cookie名称
-
->> `@return undefined` 
+> > `@return Object`
 
 ```javascript
-    _cookie.clear('zoeDylan'); //清除 zoeDylan
+_cookie.getAll(); //  {'name1':'val1','name2':'value2'}
 ```
 
-> **`_cookie.clearAll()`** 清除全部cookie
+> **`_cookie.clear(name)`** 清除 cookie
 
->> `@return undefined` 
+> > `name:String` cookie 名称
+
+> > `@return undefined`
 
 ```javascript
-    _cookie.clearAll(); //清除全部cookie
+_cookie.clear("zoeDylan"); //清除 zoeDylan
+```
+
+> **`_cookie.clearAll()`** 清除全部 cookie
+
+> > `@return undefined`
+
+```javascript
+_cookie.clearAll(); //清除全部cookie
 ```
 
 **`_isEmail(val)`** 是否是邮箱格式
@@ -111,8 +124,8 @@ zoeDylan私人工具包
 > `@return Boolean`
 
 ```javascript
-    _isEmail('627213037@qq.com'); //true
-    _isEmail(`123`); //false
+_isEmail("627213037@qq.com"); //true
+_isEmail(`123`); //false
 ```
 
 **`_isPhone(val)`** 是否是手机格式
@@ -122,70 +135,91 @@ zoeDylan私人工具包
 > `@return Boolean`
 
 ```javascript
-    _isPhone('13511221122'); //true
-    _isPhone(`123`); //false
-``` 
+_isPhone("13511221122"); //true
+_isPhone(`123`); //false
+```
+
+**`_isIDcard(val)`** 是否是中国身份证
+
+> `val:String` 身份证号
+
+> `@return Boolean`
+
+```javascript
+_isIDcard("312334958722348857"); //true
+_isIDcard(`123`); //false
+```
+
 **`_wx`** 微信开发
 
 > **`_wx.init(config,shareConfig)`** 模块初始化，必须调用次方法才能其它操作
->> `config:Object` 微信权限配置
->> `shareConfig:Object` 微信分享配置
->> `@return undefined`
+>
+> > `config:Object` 微信权限配置 `shareConfig:Object` 微信分享配置 `@return
+> > undefined`
 
 ```javascript
-    _wx.init({
-        //debug模式 默认：false
-        debug: Boolean ,
-        appId: String,
-        timestamp: String,
-        nonceStr: String,
-        signature: String,
-        //微信api列表 默认：['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
-        jsApiList: Array
-    },{
-        title: String,//标题
-        desc: String,//描述
-        link: String,//地址
-        imgUrl: String,//图片
-        success: Function,//分享成功回调
-        cancel: Function//分享取消回调
-    });
+_wx.init(
+  {
+    //debug模式 默认：false
+    debug: Boolean,
+    appId: String,
+    timestamp: String,
+    nonceStr: String,
+    signature: String,
+    //微信api列表 默认：['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
+    jsApiList: Array
+  },
+  {
+    title: String, //标题
+    desc: String, //描述
+    link: String, //地址
+    imgUrl: String, //图片
+    success: Function, //分享成功回调
+    cancel: Function //分享取消回调
+  }
+);
 ```
+
 > **`_wx.setShareConfig(shareConfig)`** 微信分享配置
->> `shareConfig:Object` 微信分享配置
->> `@return undefined`
+>
+> > `shareConfig:Object` 微信分享配置 `@return undefined`
+
 ```javascript
-    _wx.setShareConfig({
-        title: String,//标题
-        desc: String,//描述
-        link: String,//地址
-        imgUrl: String,//图片
-        success: Function,//分享成功回调
-        cancel: Function//分享取消回调
-    });
+_wx.setShareConfig({
+  title: String, //标题
+  desc: String, //描述
+  link: String, //地址
+  imgUrl: String, //图片
+  success: Function, //分享成功回调
+  cancel: Function //分享取消回调
+});
 ```
+
 > **`_wx.setShareCancel(fn)`** 设置分享取消的事件
->> `fn:Function`
->> `@return undefined`
+>
+> > `fn:Function` >> `@return undefined`
+
 ```javascript
-    _wx.setShareCancel(function(){
-        //you code
-    });
+_wx.setShareCancel(function() {
+  //you code
+});
 ```
+
 > **`_wx.setShareSuccess(fn)`** 设置分享完成的事件
->> `fn:Function`
->> `@return undefined`
+>
+> > `fn:Function` >> `@return undefined`
+
 ```javascript
-    _wx.setShareSuccess(function(){
-        //you code
-    });
+_wx.setShareSuccess(function() {
+  //you code
+});
 ```
 
-> **`_queryURL(url)`** 解析URL参数
+> **`_queryURL(url)`** 解析 URL 参数
 
->> `url:String`
+> > `url:String`
 
->> `@return Object`
+> > `@return Object`
 
 ```javascript
     cosnt url = _queryURL('http://www.a.com?a1=123&num=100');
@@ -195,48 +229,50 @@ zoeDylan私人工具包
 
 > **`_element.hasClass(elements,cName)`** 查询元素是否存在某个`class`
 
->> `elements:element Object`
->> `cName:String`
->> `@return Boolean`
+> > `elements:element Object` >> `cName:String` >> `@return Boolean`
 
 ```javascript
-    _element.hasClass(document.querySelector('body'),'phoen');//false
+_element.hasClass(document.querySelector("body"), "phoen"); //false
 ```
 
 > **`_element.addClass(elements,cName)`** 给元素添加`class`
 
->> `elements:element Object`
->> `cName:String`
->> `@return undefined`
+> > `elements:element Object` >> `cName:String` >> `@return undefined`
 
 ```javascript
-    _element.addClass(document.querySelector('body'),'phoen');
+_element.addClass(document.querySelector("body"), "phoen");
 ```
 
 > **`_element.removeClas(elements,cName)`** 移除某个元素的`class`
 
->> `elements:element Object`
->> `cName:String`
->> `@return undefined`
+> > `elements:element Object` >> `cName:String` >> `@return undefined`
 
 ```javascript
-    _element.removeClas(document.querySelector('body'),'phoen');
+_element.removeClas(document.querySelector("body"), "phoen");
 ```
 
-
 # 日志
+
+2018-04-19
+
+1. 添加`random`中的`_randomStringBySymbol`函数，用于生成包含特殊字符的字符串
+
+2. 修复`random`中`_randomString`函数判断`toString`报错BUG
+
+2017-12-01
+
+1. 添加`is`的`isIDcard`中国身份证验证
 
 2017-11-28
 
 1. 添加`element`的`class`处理
 
-2017-11-22 
+2017-11-22
 
 1. 添加`url`参数解析方法：`queryURL(string)`
 2. 优化代码内部注释
 3. 优化代码命名
-4. 优化api
-
+4. 优化 api
 
 2017-08-17
 
